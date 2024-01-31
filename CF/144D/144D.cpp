@@ -3,9 +3,8 @@
 #define pii pair<int, int>
 using namespace std;
 const int N = 1e5 + 10;
-int u, v, d;
-int x[N], y[N], w[N];
-int dis[N], n, s, m, l;
+int x[N], y[N], w[N], dis[N];
+int n s, m, l, ans;
 vector<pii> edge[N];
 priority_queue<pii> q;
 bool v[N];
@@ -13,13 +12,12 @@ signed main() {
     cin >> n >> m >> s;
     for (int i = 1; i <= n; i++) dis[i] = INT_MAX;
     for (int i = 1; i <= m; i++) {
-        cin >> u >> v >> d;
-        x[i] = u, y[i] = v, w[i] = d;
-        edge[u].push_back({v, d });
-        edge[v].push_back({u, d });
+        cin >> x[i] >> y[i] >> w[i];
+        edge[x[i]].push_back({y[i], w[i] });
+        edge[y[i]].push_back({x[i], w[i] });
     }
     dis[s] = 0;
-    q.push({s, 0 });
+    q.push({s, 0});
     while (q.size()) {
         int u = q.top().to;
         q.pop();
@@ -32,22 +30,18 @@ signed main() {
             }
         }
     }
-    int cnt = 0;
     cin >> l;
     for (int i = 1; i <= n; i++)
         cnt += (dis[i] == l);
-    
     for (int i = 1; i <= m; i++) {
         if (dis[x[i]] + w[i] - l + dis[y[i]] == l && dis[y[i]] < l && dis[x[i]] < l) {
             cnt++;
             continue;
         }
-        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[x[i]] < l) {
+        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[x[i]] < l) 
             cnt++;
-        }
-        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[y[i]] < l) {
+        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[y[i]] < l) 
             cnt++;
-        }
     }
     cout << cnt << "\n";
     return 0;
