@@ -13,11 +13,11 @@ signed main() {
     for (int i = 1; i <= n; i++) dis[i] = INT_MAX;
     for (int i = 1; i <= m; i++) {
         cin >> x[i] >> y[i] >> w[i];
-        edge[x[i]].push_back({y[i], w[i] });
-        edge[y[i]].push_back({x[i], w[i] });
+        edge[x[i]].push_back({ y[i], w[i] });
+        edge[y[i]].push_back({ x[i], w[i] });
     }
     dis[s] = 0;
-    q.push({s, 0});
+    q.push({ s, 0 });
     while (q.size()) {
         int u = q.top().first;
         q.pop();
@@ -26,7 +26,7 @@ signed main() {
         for (int i = 0; i < edge[u].size(); i++) {
             if (dis[edge[u][i].first] > dis[u] + edge[u][i].second) {
                 dis[edge[u][i].first] = dis[u] + edge[u][i].second;
-                q.push({edge[u][i].first, dis[edge[u][i].first] });
+                q.push({ edge[u][i].first, dis[edge[u][i].first] });
             }
         }
     }
@@ -38,9 +38,9 @@ signed main() {
             ans++;
             continue;
         }
-        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[x[i]] < l) 
+        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[x[i]] < l)
             ans++;
-        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[y[i]] < l) 
+        if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[y[i]] < l)
             ans++;
     }
     cout << ans << "\n";
