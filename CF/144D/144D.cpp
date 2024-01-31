@@ -9,6 +9,7 @@ vector<pii> edge[N];
 priority_queue<pii> q;
 bool v[N];
 signed main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> s;
     for (int i = 1; i <= n; i++) dis[i] = INT_MAX;
     for (int i = 1; i <= m; i++) {
@@ -19,14 +20,14 @@ signed main() {
     dis[s] = 0;
     q.push({ s, 0 });
     while (q.size()) {
-        int u = q.top().first;
+        int u = q.top().second;
         q.pop();
         if (v[u]) continue;
         v[u] = 1;
         for (int i = 0; i < edge[u].size(); i++) {
-            if (dis[edge[u][i].first] > dis[u] + edge[u][i].second) {
-                dis[edge[u][i].first] = dis[u] + edge[u][i].second;
-                q.push({ edge[u][i].first, dis[edge[u][i].first] });
+            if (dis[edge[u][i].second] > dis[u] + edge[u][i].first) {
+                dis[edge[u][i].second] = dis[u] + edge[u][i].first;
+                q.push({ edge[u][i].second, dis[edge[u][i].second] });
             }
         }
     }
