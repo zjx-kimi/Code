@@ -4,7 +4,7 @@
 using namespace std;
 const int N = 1e5 + 10;
 int x[N], y[N], w[N], dis[N];
-int n s, m, l, ans;
+int n, s, m, l, ans;
 vector<pii> edge[N];
 priority_queue<pii> q;
 bool v[N];
@@ -19,30 +19,30 @@ signed main() {
     dis[s] = 0;
     q.push({s, 0});
     while (q.size()) {
-        int u = q.top().to;
+        int u = q.top().first;
         q.pop();
         if (v[u]) continue;
         v[u] = 1;
         for (int i = 0; i < edge[u].size(); i++) {
-            if (dis[edge[u][i].to] > dis[u] + edge[u][i].v) {
-                dis[edge[u][i].to] = dis[u] + edge[u][i].v;
-                q.push({edge[u][i].to, dis[edge[u][i].to] });
+            if (dis[edge[u][i].first] > dis[u] + edge[u][i].second) {
+                dis[edge[u][i].first] = dis[u] + edge[u][i].second;
+                q.push({edge[u][i].first, dis[edge[u][i].first] });
             }
         }
     }
     cin >> l;
     for (int i = 1; i <= n; i++)
-        cnt += (dis[i] == l);
+        ans += (dis[i] == l);
     for (int i = 1; i <= m; i++) {
         if (dis[x[i]] + w[i] - l + dis[y[i]] == l && dis[y[i]] < l && dis[x[i]] < l) {
-            cnt++;
+            ans++;
             continue;
         }
         if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[x[i]] < l) 
-            cnt++;
+            ans++;
         if (dis[x[i]] + w[i] - l + dis[y[i]] > l && dis[y[i]] < l) 
-            cnt++;
+            ans++;
     }
-    cout << cnt << "\n";
+    cout << ans << "\n";
     return 0;
 }
