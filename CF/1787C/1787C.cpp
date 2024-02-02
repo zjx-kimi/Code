@@ -3,7 +3,7 @@ using namespace std;
 #define case true
 #define endl '\n'
 #define int long long
-const int N = 2e1 + 10;
+const int N = 2e5 + 10;
 int t = 1;
 int n, s;
 int arr[N], dp[N][2], minn[N], maxx[N];
@@ -17,12 +17,12 @@ signed main() {
     cin >> n >> s;
     for (int i = 1; i <= n; i++) {
       cin >> arr[i];
-      if (2 * s >= arr[i]) {
-        minn[i] = arr[i] - s;
-        maxx[i] = s;
-      } else {
+      if (2 * s <= arr[i]) {
         minn[i] = s;
-        maxx[i] = max(0LL, arr[i] - s);
+        maxx[i] = arr[i] - s;
+      } else {
+        minn[i] = max(0LL, arr[i] - s);
+        maxx[i] = arr[i] - minn[i];
       }
     }
     dp[2][0] = arr[1] * minn[2], dp[2][1] = arr[1] * maxx[2];
@@ -38,3 +38,5 @@ signed main() {
   }
   return 0;
 }
+
+// ACed
