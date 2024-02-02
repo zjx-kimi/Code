@@ -6,7 +6,7 @@ using namespace std;
 const int N = 2e5 + 10;
 int t = 1;
 int n, s;
-int arr[N], dp[2][N], minn[N], maxx[N];
+int arr[N], dp[N][2], minn[N], maxx[N];
 signed main() {
   ios::sync_with_stdio(false);
   cin.tie(0);
@@ -25,6 +25,7 @@ signed main() {
         maxx[i] = arr[i] - s;
       }
     }
+	dp[2][1] = arr[1] * 
     for (int i = 1; i <= n; i++) {
     }
   }
