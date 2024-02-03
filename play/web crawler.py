@@ -1,4 +1,5 @@
 # pip install requests 
 import requests
-x = requests.post('https://www.baidu.com/')
+url = ""
+x = requests.post(url)
 print(x.text)
