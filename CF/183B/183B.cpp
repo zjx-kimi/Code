@@ -11,9 +11,10 @@ bool check(int a, int b, int c) {
     return (arr[a].y - arr[b].y) * (arr[c].x - arr[b].x) ==
            (arr[c].y - arr[b].y) * (arr[a].x - arr[b].x);
 }
-
-int x(int a, int b) {
-    return (arr[b].x - arr[a].x) * (a + 1) + (arr[a].y - arr[b].y) * (b + 1);
+// a点和b点组成的线与X轴的交点为(x, 0)
+int x(int a, int b) 
+{
+    return arr[b].x + (arr[a].x - arr[b].x) * (arr[b].y / (arr[a].y - arr[b].y));
 }
 int main() {
     cin >> n >> m;
