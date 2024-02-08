@@ -19,6 +19,9 @@ int main() {
     for (int i = 1; i <= n; i++)
         cin >> arr[i];
     for (int i = 1; i <= n; i++) {
+        max1 = max2 = 0;
+        t1 = t2 = 0;
+        // ∑∑ij = (∑i)^2 - ∑i^2
         for (int j : Edge[i]) {
             if (w[j] > max1)
                 max2 = max1, max1 = w[j];
@@ -27,10 +30,11 @@ int main() {
             t1 = (t1 + w[j]) % Mod;
             t2 = (t2 + w[j] * w[j]) % Mod;
         }
-        t1 = t1 * t1 % Mod;
-        ans = (ans + t1 + Mod - t2) % Mod;
         if (maxx < max1 * max2)
-            maxx = max1 * max2;
+            t1 = t1 * t1 % Mod;
+        ans += t1 - t2;
+        ans = (ans + Mod) % Mod;
+        maxx = max1 * max2;
     }
     printf("%d %d\n", maxx, ans);
     return 0;
