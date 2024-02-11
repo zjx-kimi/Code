@@ -1,3 +1,7 @@
 {
     "C_Cpp.clang_format_style": "{ BasedOnStyle: Chromium, IndentWidth: 4}",
+    "files.associations": {
+        "*.cpp": "cpp",
+        "ostream": "cpp"
+    },
 }
