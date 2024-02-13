@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 1e5 * 5 + 5;
+const int N = 5e5 + 5;
 struct node {
     char chess;
     int x, y;
-} a[MAXN];
+} a[N];
 int n, x, y, up, dw, le, ri, lu, ld, ru, rd;
 bool flag;
 int main() {
@@ -13,27 +13,27 @@ int main() {
     for (int i = 1; i <= n; i++) {
         cin >> a[i].chess >> a[i].x >> a[i].y;
         if (a[i].x == x) {
-            if (a[i].y > y && up == 0 || a[i].y < a[up].y)
+            if (a[i].y > y && (up == 0 || a[i].y < a[up].y))
                 up = i;
-            else if (a[i].y < y && dw == 0 || a[i].y > a[dw].y)
+            else if (a[i].y < y && (dw == 0 || a[i].y > a[dw].y))
                 dw = i;
         }
         if (a[i].y == y) {
-            if (a[i].x > x && ri == 0 || a[i].x < a[ri].x)
+            if (a[i].x > x && (ri == 0 || a[i].x < a[ri].x))
                 ri = i;
-            else if (a[i].x < x && le == 0 || a[i].x > a[le].x)
+            else if (a[i].x < x && (le == 0 || a[i].x > a[le].x))
                 le = i;
         }
         if (a[i].x - x == a[i].y - y) {
-            if (a[i].x > x && ru == 0 || a[i].x < a[ru].x)
+            if (a[i].x > x && (ru == 0 || a[i].x < a[ru].x))
                 ru = i;
-            else if (a[i].x < x && ld == 0 || a[i].x > a[ld].x)
+            else if (a[i].x < x && (ld == 0 || a[i].x > a[ld].x))
                 ld = i;
         }
         if (a[i].x - x == y - a[i].y) {
-            if (a[i].x > x && rd == 0 || a[i].x < a[rd].x)
+            if (a[i].x > x && (rd == 0 || a[i].x < a[rd].x))
                 rd = i;
-            else if (a[i].x < x && lu == 0 || a[i].x > a[lu].x)
+            else if (a[i].x < x && (lu == 0 || a[i].x > a[lu].x))
                 lu = i;
         }
     }
